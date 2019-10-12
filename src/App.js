@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+// 1.引入tabbar布局
+import HKLayouts from './components/HKLayouts'
+// 3.引入组件
+import Home from './pages/Home'
+import List from './pages/List'
+import News from './pages/News'
+import My from './pages/My'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        {/* 2.创建路由 */}
+        <Router>
+          <Route path="/" exact render={(props)=><HKLayouts {...props}><Home /></HKLayouts>}></Route>
+          <Route path="/List"  exact render={(props)=><HKLayouts {...props}><List /></HKLayouts>}></Route>
+          <Route path="/News" exact render={(props)=><HKLayouts {...props}><News /></HKLayouts>}></Route>
+          <Route path="/My"  exact render={(props)=><HKLayouts {...props}><My /></HKLayouts>}></Route>
+        </Router>
+      </div>
+    )
+  }
 }
-
-export default App;
