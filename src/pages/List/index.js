@@ -4,7 +4,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                list
+                <span className="iconfont icon-edit:before"></span>
             </div>
         )
     }

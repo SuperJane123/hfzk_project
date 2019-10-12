@@ -1,5 +1,8 @@
 import { TabBar } from 'antd-mobile';
 import React from 'react'
+
+// 使用withRouter可以不用传props，都可以接收props参数
+import { withRouter } from 'react-router-dom'
 class HKLayouts extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +43,7 @@ class HKLayouts extends React.Component {
             }}
             data-seed="logId"
           >
-            {this.props.children}
+            {this.props.location.pathname === "/" && this.props.children}
           </TabBar.Item>
           <TabBar.Item
             icon={
@@ -68,7 +71,7 @@ class HKLayouts extends React.Component {
             }}
             data-seed="logId1"
           >
-            {this.props.children}
+            {this.props.location.pathname === "/List" && this.props.children}
           </TabBar.Item>
           <TabBar.Item
             icon={
@@ -95,7 +98,7 @@ class HKLayouts extends React.Component {
 
             }}
           >
-             {this.props.children}
+             {this.props.location.pathname === "/News" && this.props.children}
           </TabBar.Item>
           <TabBar.Item
             icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
@@ -108,7 +111,7 @@ class HKLayouts extends React.Component {
 
             }}  
           >
-             {this.props.children}
+             {this.props.location.pathname === "/My" && this.props.children}
           </TabBar.Item>
         </TabBar>
       </div>
@@ -116,4 +119,4 @@ class HKLayouts extends React.Component {
   }
 }
 
-export default HKLayouts
+export default withRouter(HKLayouts)
