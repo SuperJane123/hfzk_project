@@ -37,10 +37,10 @@ class HKLayouts extends React.Component {
             }
             selected={this.props.location.pathname === "/"}
             badge={1}
-            onPress={() => {
+            onPress={() => {this.props.history.push('/')}}
 
-              this.props.history.push('/')
-            }}
+              
+            
             data-seed="logId"
           >
             {this.props.location.pathname === "/" && this.props.children}
@@ -64,11 +64,7 @@ class HKLayouts extends React.Component {
             key="找房"
             badge={'new'}
             selected={this.props.location.pathname === "/List"}
-            onPress={() => {
-             
-              this.props.history.push('/List')
-
-            }}
+            onPress={() => {this.props.history.push('/List')}}
             data-seed="logId1"
           >
             {this.props.location.pathname === "/List" && this.props.children}
@@ -92,11 +88,7 @@ class HKLayouts extends React.Component {
             key="咨询"
             dot
             selected={this.props.location.pathname === "/News"}
-            onPress={() => {
-             
-              this.props.history.push('/News')
-
-            }}
+            onPress={() => {this.props.history.push('/News')}}
           >
              {this.props.location.pathname === "/News" && this.props.children}
           </TabBar.Item>
@@ -106,10 +98,7 @@ class HKLayouts extends React.Component {
             title="我的"
             key="我的"
             selected={this.props.location.pathname === "/My"}
-            onPress={() => {
-              this.props.history.push('/My')
-
-            }}  
+            onPress={() => {this.props.history.push('/My')}}  
           >
              {this.props.location.pathname === "/My" && this.props.children}
           </TabBar.Item>
