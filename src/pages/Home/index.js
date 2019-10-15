@@ -12,8 +12,11 @@ import nav2 from '../../assets/images/nav-2.png'
 import nav3 from '../../assets/images/nav-3.png'
 import nav4 from '../../assets/images/nav-4.png'
 
+// 引入搜索框组件
+import SearchInput from '../../components/searchInput'
+
 // 引入局部样式
-import HKindex from './HKindx.module.css'
+import HKindex from './HKindx.module.scss'
 export default class Home extends Component {
     state = {
       // 轮播图
@@ -27,26 +30,38 @@ export default class Home extends Component {
 					{id:2,title: "合租",imgSrc: nav2},
 					{id:3,title: "地图找房",imgSrc: nav3},
 					{id:4,title: "去出租",imgSrc: nav4},
-				],				
+				],
+				// 租房小组
+				rentGroup:[]
+				
 	}
 
 // 在组件创建完后发送请求
     componentDidMount(){
+			// 请求轮播图数据
         axios.get('/home/swiper')
         .then(res=>{
-            console.log(res)
             this.setState({
-                swiperList: res.data.body
+							swiperList: res.data.body
             })
-        })
+				});
+				// 请求租房小组
+				axios.get('/home/groups')
+				.then(res=>{
+					this.setState({
+						rentGroup: res.data.body
+				})
+				})
     }
 
     render() {
         return (
         <Fragment>
-          {/* 轮播图开始 */}
+
           {/* 该组件没有数据时不要渲染，要等到轮播有数据后才渲染 */}
-          <div>
+          <div className={HKindex.Carousel}>
+             
+             {/* 轮播图开始 */}
             {this.state.swiperList.length && <Carousel
                 autoplay
                 infinite
@@ -70,8 +85,12 @@ export default class Home extends Component {
                   </a>
                 ))}
               </Carousel>} 
-          </div>
 					 {/* 轮播图结束  */}
+          </div>
+          <div className={HKindex.searh_input}>
+          <SearchInput />
+          </div>
+   
 
            {/* 首页导航结构开始*/}
 					 {/* <div className='hk_nav'> */}
@@ -86,6 +105,25 @@ export default class Home extends Component {
 					 </div>
            {/* 首页导航结构结束 */}
 
+							{/* 租房小组结构开始 */}
+							<div className={HKindex.rent_group}>
+                      <div className={HKindex.rent_title}>
+                        <span>租房小组</span>
+                        <span>更多</span>
+                      </div>
+                      <div className={HKindex.rent_content}>
+                        {this.state.rentGroup.map(v=><div className={HKindex.rent_item} key={v.id}>
+                          <div className={HKindex.item.info}>
+                            <div className={HKindex.info_title}>{v.title}</div>
+                            <div className={HKindex.info_desc}>{v.desc}</div>
+                          </div>
+                          <div className={HKindex.item.img_wrap}>
+                            <img src={baseUrl + v.imgSrc}/>
+                          </div>
+                        </div>)}
+                      </div>							
+							</div>
+							{/* 租房小组结构结束 */}
         </Fragment>       
         );
       }

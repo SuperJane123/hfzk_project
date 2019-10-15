@@ -1,0 +1,70 @@
+.Carousel {
+  position: relative;
+}
+.searh_input {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+}
+/* 首页导航样式开始 */
+.hk_nav{
+    background: #fff;
+    display: flex;
+    padding: 10px 0;
+}
+.nav_item {
+    flex: 1;
+    width: 33%;
+    text-align: center;
+}
+.nav_img_waper {
+   
+}
+.nav_img_waper > img {
+    width: 48px;
+}
+/* 首页导航样式结束 */
+
+/* 租房小组样式开始 */
+.rent_group {
+
+}
+.rent_title {
+  display: flex;
+  justify-content: space-between;
+
+}
+.rent_title > span:first-child {
+  font-weight: bold;
+  font-size: 18px;
+}
+.rent_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.rent_item {
+ display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  .item.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .item.img_wrap {
+    padding: 20px;
+    /* flex: 1;x */
+      
+  }
+  
+}
+
+/* 租房小组样式结束 */

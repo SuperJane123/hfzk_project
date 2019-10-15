@@ -12,7 +12,6 @@ class HKLayouts extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar

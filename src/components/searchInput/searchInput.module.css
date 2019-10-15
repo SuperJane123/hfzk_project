@@ -1,0 +1,28 @@
+.search_bar {
+
+  display: flex;
+  justify-content: space-between;
+}
+.search_warp {
+    display: flex;
+    flex: 1;
+    width: 80%;
+    height: 34px;
+    background: #Fff;
+    align-items: center;
+    border-radius: 5px;
+
+}
+.search_input {
+   
+    color: #666;
+   border-left: 1px solid currentColor;
+}
+.localtion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    
+
+}

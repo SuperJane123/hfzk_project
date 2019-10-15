@@ -1,0 +1,51 @@
+.city_list{
+    .city_content{
+        height: calc(100vh - 45px);
+        overflow: auto;
+        background: #fff;
+        position: relative;
+        .letter_list {
+            z-index: 1000;
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            .letter_item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 20px;
+                width: 20px;
+                margin: 5px;
+            }
+        }
+        .active {
+            background: green;
+            border-radius: 50%;
+            color: #fff;
+        }
+    } 
+    .city_group {
+        padding-right: 10px;
+        .city_title {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            color: #999;
+            padding-left: 10px;
+        }
+        .city_main {
+            padding-left: 10px;
+
+            .city_name {
+                height: 40px; 
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                border-bottom: 1px solid #ddd;
+
+           }
+        }
+            
+    }
+} 
+

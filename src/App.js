@@ -8,8 +8,23 @@ import Home from './pages/Home'
 import List from './pages/List'
 import News from './pages/News'
 import My from './pages/My'
-
+import CityList from './pages/CityList'
+// 引入store
+import store from './store'
+// 引入action
+import { mapCityName } from './store/actionCreator'
+// 引入百度地图自己的文件
+import { getLocalCity } from './utils/map'
 export default class App extends Component {
+  // 请求地图数据,主要，在react中使用原声的js全局变量。必须要加上window
+  componentDidMount(){
+    getLocalCity()
+    .then(res=>{
+      store.dispatch(mapCityName(res.name  === "全国" ? "北京" : res.name))
+    })
+
+  }
+
   render() {
     return (
       <div>
@@ -27,6 +42,8 @@ export default class App extends Component {
           <Route path="/List"  exact render={()=><HKLayouts ><List /></HKLayouts>}></Route>
           <Route path="/News" exact render={()=><HKLayouts ><News /></HKLayouts>}></Route>
           <Route path="/My"  exact render={()=><HKLayouts ><My /></HKLayouts>}></Route>
+          <Route path="/CityList"  exact component={CityList}></Route>
+
         </Router>
       </div>
     )
