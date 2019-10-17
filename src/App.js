@@ -9,6 +9,7 @@ import List from './pages/List'
 import News from './pages/News'
 import My from './pages/My'
 import CityList from './pages/CityList'
+import BdMap from './pages/BdMap'
 // 引入store
 import store from './store'
 // 引入action
@@ -20,7 +21,7 @@ export default class App extends Component {
   componentDidMount(){
     getLocalCity()
     .then(res=>{
-      store.dispatch(mapCityName(res.name  === "全国" ? "北京" : res.name))
+      store.dispatch(mapCityName(res.name  === "全国" ? "上海" : res.name))
     })
 
   }
@@ -43,7 +44,7 @@ export default class App extends Component {
           <Route path="/News" exact render={()=><HKLayouts ><News /></HKLayouts>}></Route>
           <Route path="/My"  exact render={()=><HKLayouts ><My /></HKLayouts>}></Route>
           <Route path="/CityList"  exact component={CityList}></Route>
-
+          <Route path="/BdMap"  exact component={BdMap}></Route>
         </Router>
       </div>
     )

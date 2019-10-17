@@ -8,7 +8,11 @@ export const getLocalCity=()=>{
         myCity.get(myFun);
         function myFun(result){
             resolve(result)
-            console.log(result)
         }
     })
 }
+
+export const BMap = window.BMap
+export const BMAP_NORMAL_MAP = window.BMAP_NORMAL_MAP
+export const BMAP_HYBRID_MAP = window.BMAP_HYBRID_MAP
+

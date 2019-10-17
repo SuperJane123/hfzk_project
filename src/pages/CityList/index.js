@@ -15,6 +15,26 @@
    3.获取数据
      1.发送异步请求，获取所有城市
      2.发送异步请求，获取热门城市
+
+
+   4.实现页面主要的静态布局
+   5.要使用react插件来实现 长列表的数据渲染需求（可视区渲染）
+     1.组件使用真实的数据
+     2.控制react插件 宽度和高度 和每一行被渲染的数据的高度
+   
+
+   6.实现右侧字母列表
+    1.自己构造合法的数据["#","热","A"]
+    2.写静态样式 --- 要注意显示的层级
+    3.点击字母让左侧的列表滚动
+      1.通过<List>的属性 scrollToindex （scrollToAlignment="start" 解决定位不准确的问题）
+      2.结合以前的ref知识点来实现！
+
+   7.点击城市
+     1.获取被点击的城市
+     2.判断是否属于北上广深
+       1.修改redux中的城市名称
+     3.不属于 弹出提示即可！！
     *  
  */
 
@@ -27,6 +47,8 @@ import store from '../../store'
 import indexCss from './index.module.scss'
 // 1.引入可视区渲染组件
 import { List ,AutoSizer} from 'react-virtualized';
+import { mapCityName } from '../../store/actionCreator'
+import { Toast } from 'antd-mobile';
 
 // 快速生成有数字的索引
 // const list = Object.keys(String(Array(100)))
@@ -48,7 +70,7 @@ export default class CityList extends Component {
         // 当前索引位置
         currentIndex: 0
     };
-
+    unSubscribe = null
     constructor(){
         super()
         // 创建 长列表的 ref
@@ -59,8 +81,10 @@ export default class CityList extends Component {
             this.getAllCity(cityName)
         }else {
             // 如果没有值，就获取当前城市
-            store.subscribe(()=>{
+            //直接在构造行数中取消订阅，有时候跳转页面比较快，事件还在派发中，如果在componentWillMound中取消订阅，可能会报错
+           this.unSubscribe =  store.subscribe(()=>{
                 let cityName = store.getState().mapReducer.cityName
+                this.unSubscribe()
                 this.getAllCity(cityName)
             })
             
@@ -126,7 +150,8 @@ export default class CityList extends Component {
           >
               <div className={indexCss.city_title}>{ title }</div>
               <div className={indexCss.city_main}>
-                {item[title].map(v=> <div className={indexCss.city_name} key={ v }>{v}</div>)}
+                {item[title].map(v=> 
+                <div className={indexCss.city_name} key={v} onClick={this.handleGetCity.bind(this,v)}>{v}</div>)}
               </div>
 
           </div>
@@ -160,6 +185,20 @@ export default class CityList extends Component {
         // this.MainList.current.scrollToRow(index);
 
 
+    };
+
+
+    // 点击城市时跳转到首页
+    handleGetCity=(cityName)=>{
+        if(["北京","上海","广州","深圳"].includes(cityName)){
+            // 派发一个事件,修改store数据
+           store.dispatch(mapCityName(cityName))
+        //    跳转页面
+        this.props.history.push("/")
+           
+        }else{
+            Toast.info('该城市没有房源', 1);
+        }
     }
 
 
@@ -171,7 +210,7 @@ export default class CityList extends Component {
                     <NavBar
                     mode="light"
                     icon={<Icon type="left" />}
-                    onLeftClick={() => console.log('onLeftClick')}
+                    onLeftClick={() => this.props.history.push("/")}
                     rightContent={[
                     ]}
                     >城市列表</NavBar>

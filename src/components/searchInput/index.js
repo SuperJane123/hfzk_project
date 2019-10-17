@@ -7,18 +7,26 @@ import { withRouter } from 'react-router-dom'
 
     state= {
         cityName: ""
-    }
+    };
+    // 定义一个取消取消订阅的属性
+    unSubscribe = null;
 
     constructor(){
         super();
-        this.state.cityName = store.getState().mapReducer.cityName
+        // this.state.cityName = store.getState().mapReducer.cityName
         // 开启一个订阅
-        store.subscribe(()=>{
+        this.unSubscribe = store.subscribe(()=>{
             this.state.cityName = store.getState().mapReducer.cityName
         })
+    };
+
+    // 取消订阅
+    componentWillUnmount(){
+        this.unSubscribe()
     }
 
     render() {
+
         return (
             <div className={serchIndx.search_bar}>
                 {/* 输入框 */}
@@ -33,7 +41,7 @@ import { withRouter } from 'react-router-dom'
                     </div>
                 </div>
                 {/* 字体图标 */}    
-                <i className="iconfont icon-map"></i>
+                <i className={ serchIndx.iconfont +"  iconfont icon-map" }  onClick={()=>this.props.history.push("/BdMap")}></i>
             </div>
         )
     }

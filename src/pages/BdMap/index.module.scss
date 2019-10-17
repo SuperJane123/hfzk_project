@@ -1,0 +1,20 @@
+.bdmap {
+    .bd_nav {
+       
+    }
+    .allmap {
+        height: calc( 100vh - 45px );
+        .label_item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            color: #fff;
+            background: rgba(12,181,106,.9);
+            border-radius: 50%;
+            font-weight: bold;
+        }
+    }
+}

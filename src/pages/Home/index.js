@@ -32,8 +32,10 @@ export default class Home extends Component {
 					{id:4,title: "去出租",imgSrc: nav4},
 				],
 				// 租房小组
-				rentGroup:[]
-				
+        rentGroup:[],
+
+        // 最新咨询
+				newsList: []
 	}
 
 // 在组件创建完后发送请求
@@ -51,7 +53,14 @@ export default class Home extends Component {
 					this.setState({
 						rentGroup: res.data.body
 				})
-				})
+        });
+        
+        // 请求最新咨询
+        axios.get("/home/news")
+        .then(res=>{
+          console.log(res)
+          this.setState({newsList: res.data.body})
+        })
     }
 
     render() {
@@ -93,7 +102,6 @@ export default class Home extends Component {
    
 
            {/* 首页导航结构开始*/}
-					 {/* <div className='hk_nav'> */}
 					 <div className={HKindex.hk_nav}>
 
 						 {this.state.indexNav.map(v=><div className={HKindex.nav_item} key={v.id}>
@@ -123,7 +131,35 @@ export default class Home extends Component {
                         </div>)}
                       </div>							
 							</div>
-							{/* 租房小组结构结束 */}
+              {/* 租房小组结构结束 */}
+              
+
+              {/* 最新咨询结构开始 */}
+                 <div className={HKindex.hk_news}>
+                    <div className={HKindex.new_title}>
+                      <h3>最新咨询</h3>
+                    </div>
+                    <div className={HKindex.news_content}>
+                      {this.state.newsList.map((v,i)=><div className={HKindex.news_item} key={v.id}>
+                        <div className={HKindex.news_img_wrap}>
+                          <img src={baseUrl + v.imgSrc}/>
+                        </div>
+                        <div className={HKindex.news_info}>
+                          <div className={HKindex.news_title}>
+                            <h3>{v.title}</h3>
+                          </div>
+                          <div className={HKindex.news_other}>
+                            <span>{v.from}</span>
+                            <span>{v.date}</span>
+                          </div>
+                        </div>
+                      </div>)}
+                        
+                    </div>
+                 </div>
+
+              {/* 最新咨询结构结束*/}
+
         </Fragment>       
         );
       }

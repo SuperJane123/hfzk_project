@@ -61,10 +61,67 @@
   }
   .item.img_wrap {
     padding: 20px;
-    /* flex: 1;x */
+    flex: 1;
+    width: 50%;
       
   }
-  
+  .item.img_wrap > img {
+    width: 50%;
+  }
 }
 
 /* 租房小组样式结束 */
+
+
+// 最新咨询样式开始
+.hk_news {
+  background: #fff;
+  padding: 10px 20px;
+  .new_title {
+    h3 {
+
+    }
+  }
+
+  .news_content {
+     
+    .news_item {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 15px 10px 15px 0;
+      display: flex;
+      .news_img_wrap {
+        width: 120px;
+        height: 90px;
+        img {
+          width: 100%;
+        }
+      }
+
+      .news_info {
+        flex: 1;
+        padding-left: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+         text-align: center;
+        .news_title {
+          h3 {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+
+        .news_other {
+          display: flex;
+          justify-content: space-between;
+          color: #999;
+          span {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+// 最新咨询样式结束

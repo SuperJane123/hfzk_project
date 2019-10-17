@@ -17,6 +17,7 @@
    
     color: #666;
    border-left: 1px solid currentColor;
+   padding-left: 10px;
 }
 .localtion {
     display: flex;
@@ -25,4 +26,10 @@
     width: 90px;
     
 
+}
+.iconfont {
+    color: #fff;
+    font-size: 25px;
+    margin-left: 10px;
+   
 }
